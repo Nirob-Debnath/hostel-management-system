@@ -7,7 +7,7 @@ import ReviewSection from './ReviewSection';
 
 const Home = () => {
     return (
-        <div className="container mx-auto px-4">
+        <div>
             <Banner />
             <MealsByCategory />
             <Facilities />

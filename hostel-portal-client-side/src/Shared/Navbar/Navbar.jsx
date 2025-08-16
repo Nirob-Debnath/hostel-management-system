@@ -23,20 +23,21 @@ const Navbar = () => {
     const protectedLinks = [
         { to: '/dashboard', label: 'Dashboard' },
         { to: '/profile', label: 'Profile' },
+        { to: '/payment-history', label: 'Payment History' },
+        { to: '/requested-meals', label: 'Requested Meals' },
+        { to: '/my-reviews', label: 'My Reviews' },
     ];
-    const allLinks = user ? [...publicLinks, ...protectedLinks] : publicLinks;
 
     const links = (
         <>
-            {allLinks.slice(0, user ? 5 : 3).map(link => (
+            {publicLinks.map(link => (
                 <li key={link.to}><NavLink to={link.to}>{link.label}</NavLink></li>
             ))}
-
-            {user && allLinks.length > 5 && (
+            {user && (
                 <li className="dropdown dropdown-hover">
-                    <button className="btn btn-sm btn-outline">More</button>
-                    <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40">
-                        {allLinks.slice(5).map(link => (
+                    <button className="btn btn-sm btn-outline">Dashboard</button>
+                    <ul className="dropdown-content menu p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-48">
+                        {protectedLinks.map(link => (
                             <li key={link.to}><NavLink to={link.to}>{link.label}</NavLink></li>
                         ))}
                     </ul>
@@ -50,10 +51,10 @@ const Navbar = () => {
 
     return (
         <nav
-            className="sticky top-0 left-0 w-full z-50 bg-primary text-base-100 shadow-md dark:bg-gray-900 dark:text-white"
-            style={{ minHeight: '64px' }}
+            className="sticky top-0 left-0 w-full z-50 bg-primary-600 text-base-100 shadow-md dark:bg-gray-900 dark:text-white"
+            style={{ minHeight: '64px', width: '100vw' }}
         >
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
                 {/* Left: Logo & Mobile Dropdown */}
                 <div className="flex items-center gap-4">
                     <div className="lg:hidden dropdown">
