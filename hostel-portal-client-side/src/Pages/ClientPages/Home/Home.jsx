@@ -7,12 +7,12 @@ import ReviewSection from './ReviewSection';
 
 const Home = () => {
     return (
-        <div>
-            <Banner></Banner>
-            <MealsByCategory></MealsByCategory>
-            <Facilities></Facilities>
-            <Membership></Membership>
-            <ReviewSection></ReviewSection>
+        <div className="container mx-auto px-4">
+            <Banner />
+            <MealsByCategory />
+            <Facilities />
+            <Membership />
+            <ReviewSection />
         </div>
     );
 };
