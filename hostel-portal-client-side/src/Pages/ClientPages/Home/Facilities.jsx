@@ -31,11 +31,11 @@ const facilities = [
 
 const Facilities = () => {
     return (
-        <div className="py-16 px-4 text-center">
+        <div className="py-16 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 text-center w-full">
             <h2 className="text-5xl font-bold text-orange-500 italic mb-4">Facilities</h2>
             <p className="uppercase text-gray-600 tracking-widest mb-12">What we offer for free</p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
                 {facilities.map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-2">
                         <div className="bg-yellow-300 rounded-full p-6 shadow-md">

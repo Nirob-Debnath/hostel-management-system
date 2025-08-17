@@ -14,7 +14,7 @@ import FAQ from './FAQ';
 
 const Home = () => {
     return (
-        <div>
+        <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0">
             <Banner />
             <FeaturedMeals />
             <RecentMeals />

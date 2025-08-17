@@ -47,7 +47,7 @@ const Meals = () => {
     // Removed unused fetchMoreMeals function
 
     return (
-        <div className="max-w-6xl mx-auto p-4">
+    <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 py-4">
             <h2 className="text-3xl font-bold mb-4">All Meals</h2>
 
             {/* Filters */}
@@ -101,7 +101,7 @@ const Meals = () => {
             </div>
 
             {/* Meals Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 {meals.map((meal) => (
                     <div key={meal._id} className="card bg-base-100 shadow-md">
                         <figure>

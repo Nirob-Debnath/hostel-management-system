@@ -56,7 +56,7 @@ const MealsByCategory = () => {
     const displayedMeals = meals.slice(0, visibleCount);
 
     return (
-        <div className="p-6 max-w-7xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 py-6">
             <h1 className="text-3xl font-bold text-center mb-6">Meals by Category</h1>
 
             {/* Category Tabs */}
@@ -84,7 +84,7 @@ const MealsByCategory = () => {
             ) : (
                 <>
                     {/* Meals Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                         {displayedMeals.map((meal) => (
                             <MealCard key={meal._id} meal={meal} />
                         ))}

@@ -52,14 +52,14 @@ const Membership = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="py-12 px-4 sm:px-6 md:px-10 lg:px-16 bg-gradient-to-br from-slate-100 to-white">
+        <div className="py-12 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 bg-gradient-to-br from-slate-100 to-white w-full">
             <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800">Membership</h1>
 
             <div className="flex flex-wrap justify-center items-stretch gap-6 md:gap-8">
                 {packages.map(pkg => (
                     <div
                         key={pkg.name}
-                        className={`card w-full sm:w-[360px] md:w-[400px] lg:w-[390px] h-[520px] p-6 rounded-2xl shadow-md border-t-4 ${pkg.color} ${pkg.bg} hover:shadow-xl transition duration-300 flex flex-col justify-between`}
+                        className={`card w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-[520px] p-4 sm:p-6 rounded-2xl shadow-md border-t-4 ${pkg.color} ${pkg.bg} hover:shadow-xl transition duration-300 flex flex-col justify-between`}
                     >
                         <div>
                             <h2 className="text-2xl md:text-3xl font-extrabold text-center text-gray-800">{pkg.name}</h2>

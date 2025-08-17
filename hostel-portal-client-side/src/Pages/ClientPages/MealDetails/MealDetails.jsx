@@ -162,13 +162,13 @@ const MealDetails = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto p-4">
+        <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 py-4">
             <div className="bg-base-100 shadow-xl rounded-xl p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Left - Image */}
                 <img
                     src={meal.image}
                     alt={meal.title}
-                    className="w-full h-80 object-cover rounded-xl"
+                    className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-xl"
                 />
 
                 {/* Right - Info */}

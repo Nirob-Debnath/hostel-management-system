@@ -45,7 +45,7 @@ const ReviewCard = ({ review }) => (
 
 const ReviewSection = () => {
     return (
-        <section className="py-16 px-4 bg-gray-50">
+            <section className="py-16 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 bg-gray-50 w-full max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center text-orange-500 italic mb-4">
                 Student's Feedback
             </h2>
@@ -53,7 +53,7 @@ const ReviewSection = () => {
                 Bangladeshi Students Sharing Their Experience
             </p>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {reviews.map((review, index) => (
                     <ReviewCard key={index} review={review} />
                 ))}

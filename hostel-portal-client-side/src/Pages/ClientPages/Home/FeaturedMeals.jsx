@@ -45,7 +45,7 @@ const FeaturedMeals = () => {
   };
 
   return (
-    <section className="py-12 px-4 bg-white">
+  <section className="py-12 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 bg-white w-full max-w-7xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center text-primary">Featured Meals</h2>
       {/* Category Tabs */}
       <div role="tablist" className="tabs tabs-boxed justify-center mb-6">
@@ -69,7 +69,7 @@ const FeaturedMeals = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             {filteredMeals.slice(0, visibleCount).map(meal => (
               <MealCard key={meal._id} meal={meal} />
             ))}
