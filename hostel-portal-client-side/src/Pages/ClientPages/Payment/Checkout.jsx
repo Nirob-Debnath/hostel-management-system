@@ -30,7 +30,7 @@ const Checkout = () => {
     }, [packageName, axiosSecure]);
 
     return (
-        <div className="p-6">
+        <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 py-6">
             <h2 className="text-2xl mb-4">Checkout - {packageDetails.name || packageName}</h2>
             {clientSecret && (
                 <Elements stripe={stripePromise}>

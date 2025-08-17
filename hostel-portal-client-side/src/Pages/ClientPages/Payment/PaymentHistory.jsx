@@ -40,28 +40,30 @@ const PaymentHistory = () => {
     if (payments.length === 0) return <p>No payment history found.</p>;
 
     return (
-        <div className="max-w-4xl mx-auto p-4">
+        <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 py-4">
             <h2 className="text-2xl font-semibold mb-4">Payment History</h2>
-            <table className="w-full table-auto border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100">
-                        <th className="border border-gray-300 px-4 py-2 text-left">Transaction ID</th>
-                        <th className="border border-gray-300 px-4 py-2 text-left">Package Name</th>
-                        <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
-                        <th className="border border-gray-300 px-4 py-2 text-left">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {payments.map(({ transactionId, packageName, price, date }) => (
-                        <tr key={transactionId} className="hover:bg-gray-50">
-                            <td className="border border-gray-300 px-4 py-2 font-mono">{transactionId}</td>
-                            <td className="border border-gray-300 px-4 py-2">{packageName}</td>
-                            <td className="border border-gray-300 px-4 py-2">${price.toFixed(2)}</td>
-                            <td className="border border-gray-300 px-4 py-2">{new Date(date).toLocaleString()}</td>
+            <div className="overflow-x-auto">
+                <table className="w-full table-auto border-collapse border border-gray-300 min-w-[600px]">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-4 py-2 text-left">Transaction ID</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Package Name</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Date</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {payments.map(({ transactionId, packageName, price, date }) => (
+                            <tr key={transactionId} className="hover:bg-gray-50">
+                                <td className="border border-gray-300 px-4 py-2 font-mono">{transactionId}</td>
+                                <td className="border border-gray-300 px-4 py-2">{packageName}</td>
+                                <td className="border border-gray-300 px-4 py-2">${price.toFixed(2)}</td>
+                                <td className="border border-gray-300 px-4 py-2">{new Date(date).toLocaleString()}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

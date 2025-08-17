@@ -101,10 +101,10 @@ const CheckoutForm = ({ packageDetails }) => {
     };
 
     return (
-        <div>
+        <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0">
             <form
                 onSubmit={handleSubmit}
-                className="space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
+                className="space-y-4 bg-white p-4 sm:p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
             >
                 <CardElement className="p-2 border rounded" />
                 <button
