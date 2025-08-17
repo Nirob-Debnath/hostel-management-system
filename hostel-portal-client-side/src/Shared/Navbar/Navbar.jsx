@@ -20,13 +20,6 @@ const Navbar = () => {
         { to: '/meals', label: 'Meals' },
         { to: '/upcomingmeals', label: 'Upcoming Meals' },
     ];
-    const protectedLinks = [
-        { to: '/dashboard', label: 'Dashboard' },
-        { to: '/profile', label: 'Profile' },
-        { to: '/payment-history', label: 'Payment History' },
-        { to: '/requested-meals', label: 'Requested Meals' },
-        { to: '/my-reviews', label: 'My Reviews' },
-    ];
 
     const links = (
         <>
@@ -34,13 +27,8 @@ const Navbar = () => {
                 <li key={link.to}><NavLink to={link.to}>{link.label}</NavLink></li>
             ))}
             {user && (
-                <li className="dropdown dropdown-hover">
-                    <button className="btn btn-sm btn-outline">Dashboard</button>
-                    <ul className="dropdown-content menu p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-48">
-                        {protectedLinks.map(link => (
-                            <li key={link.to}><NavLink to={link.to}>{link.label}</NavLink></li>
-                        ))}
-                    </ul>
+                <li>
+                    <NavLink to="/dashboard" className="btn btn-sm btn-outline">Dashboard</NavLink>
                 </li>
             )}
         </>
