@@ -11,7 +11,7 @@ const Meals = () => {
     const [category, setCategory] = useState('All');
     const [priceRange, setPriceRange] = useState([0, 1000]);
 
-    const limit = 6;
+    const limit = 30;
 
     const fetchMeals = useCallback(
         async (pageNumber = 1, isNewSearch = false) => {
@@ -44,12 +44,7 @@ const Meals = () => {
         fetchMeals(1, true);
     }, [fetchMeals]);
 
-    // Load more meals on scroll
-    const fetchMoreMeals = () => {
-        const nextPage = page + 1;
-        setPage(nextPage);
-        fetchMeals(nextPage);
-    };
+    // Removed unused fetchMoreMeals function
 
     return (
         <div className="max-w-6xl mx-auto p-4">
@@ -105,41 +100,58 @@ const Meals = () => {
                 </div>
             </div>
 
-            {/* Meals List with Infinite Scroll */}
-            <InfiniteScroll
-                dataLength={meals.length}
-                next={fetchMoreMeals}
-                hasMore={hasMore}
-                loader={<p className="text-center py-4">Loading more meals...</p>}
-                endMessage={
-                    <p className="text-center py-4 text-gray-500">No more meals to show.</p>
-                }
-            >
-                <div className="grid md:grid-cols-3 gap-6">
-                    {meals.map((meal) => (
-                        <div key={meal._id} className="card bg-base-100 shadow-md">
-                            <figure>
-                                <img
-                                    src={meal.image}
-                                    alt={meal.title}
-                                    className="h-48 w-full object-cover"
-                                />
-                            </figure>
-                            <div className="card-body">
-                                <h3 className="card-title">{meal.title}</h3>
-                                <p>{meal.description?.slice(0, 60)}...</p>
-                                <p className="text-sm text-gray-600">Category: {meal.category}</p>
-                                <p className="text-sm text-gray-600">Price: {meal.price} Tk.</p>
-                            </div>
-                            <div className="card-actions justify-end pt-0 p-4">
-                                <Link to={`/mealdetails/${meal._id}`}>
-                                    <button className="btn btn-primary">View Details</button>
-                                </Link>
-                            </div>
+            {/* Meals Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                {meals.map((meal) => (
+                    <div key={meal._id} className="card bg-base-100 shadow-md">
+                        <figure>
+                            <img
+                                src={meal.image}
+                                alt={meal.title}
+                                className="h-48 w-full object-cover"
+                            />
+                        </figure>
+                        <div className="card-body">
+                            <h3 className="card-title">{meal.title}</h3>
+                            <p className="text-sm text-gray-600">Category: {meal.category}</p>
+                            <p className="text-sm text-gray-600">Price: {meal.price} Tk.</p>
                         </div>
-                    ))}
-                </div>
-            </InfiniteScroll>
+                        <div className="card-actions justify-end pt-0 p-4">
+                            <Link to={`/mealdetails/${meal._id}`}>
+                                <button className="btn btn-primary">View Details</button>
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {/* Pagination Controls */}
+            <div className="flex justify-center items-center gap-2 mt-8">
+                <button
+                    className="btn btn-outline"
+                    disabled={page === 1}
+                    onClick={() => {
+                        if (page > 1) {
+                            setPage(page - 1);
+                            fetchMeals(page - 1, true);
+                        }
+                    }}
+                >
+                    Previous
+                </button>
+                <span className="px-4">Page {page}</span>
+                <button
+                    className="btn btn-outline"
+                    disabled={!hasMore}
+                    onClick={() => {
+                        if (hasMore) {
+                            setPage(page + 1);
+                            fetchMeals(page + 1, true);
+                        }
+                    }}
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 };
