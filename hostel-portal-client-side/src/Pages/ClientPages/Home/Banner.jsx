@@ -4,8 +4,9 @@ import { Carousel } from 'react-responsive-carousel';
 
 const Banner = () => {
     return (
-        <div className="flex justify-center items-center w-full py-4 bg-gray-100">
-            <div className="w-full max-w-5xl overflow-hidden rounded-2xl shadow-lg">
+        <div className="flex flex-col md:flex-row justify-center items-stretch w-full py-4 bg-gray-100">
+            {/* Left: Banner Carousel */}
+            <div className="w-full md:w-2/3 max-w-4xl overflow-hidden rounded-2xl shadow-lg mb-4 md:mb-0 md:mr-6">
                 <Carousel
                     showThumbs={false}
                     showStatus={false}
@@ -36,6 +37,17 @@ const Banner = () => {
                         />
                     </div>
                 </Carousel>
+            </div>
+            {/* Right: Two stacked sections */}
+            <div className="w-full md:w-1/3 flex flex-col gap-6">
+                <div className="bg-white rounded-2xl shadow-md p-6 flex-1 flex flex-col justify-center items-center">
+                    <h3 className="text-xl font-bold mb-2 text-primary">Hostel News</h3>
+                    <p className="text-gray-700 text-center">Stay updated with the latest announcements and events happening in our hostel community.</p>
+                </div>
+                <div className="bg-white rounded-2xl shadow-md p-6 flex-1 flex flex-col justify-center items-center">
+                    <h3 className="text-xl font-bold mb-2 text-primary">Special Discount</h3>
+                    <p className="text-gray-700 text-center mb-2">Get up to <span className="text-green-600 font-bold">20% OFF</span> on Platinum Membership this month!</p>
+                </div>
             </div>
         </div>
     );
