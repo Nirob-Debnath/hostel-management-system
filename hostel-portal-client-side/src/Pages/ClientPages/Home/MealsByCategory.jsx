@@ -1,42 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import MealCard from "./MealCard";
 import axios from "axios";
 
 const MealsByCategory = () => {
     const [meals, setMeals] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [visibleCount, setVisibleCount] = useState(6);
+    const [visibleRows, setVisibleRows] = useState(2); // 2 rows initially
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
 
-    const fetchMeals = async () => {
-        try {
-            setLoading(true);
-            const res = await axios.get("https://hostel-server-two.vercel.app/meals");
-            setMeals(res.data.meals || []);
-        } catch (err) {
-            console.error("Failed to fetch meals:", err);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const limit = 6;
+
+    const fetchMeals = useCallback(
+        async (pageNumber = 1, isNewSearch = false) => {
+            try {
+                setLoading(true);
+                const res = await axios.get('https://hostel-server-two.vercel.app/meals', {
+                    params: {
+                        category: selectedCategory,
+                        page: pageNumber,
+                        limit,
+                    },
+                });
+                const newMeals = res.data.meals || [];
+                setMeals((prev) => (isNewSearch ? newMeals : [...prev, ...newMeals]));
+                setHasMore(newMeals.length === limit);
+            } catch (err) {
+                console.error('Error fetching meals:', err);
+            } finally {
+                setLoading(false);
+            }
+        },
+        [selectedCategory]
+    );
 
     useEffect(() => {
-        fetchMeals();
-    }, []);
+        setPage(1);
+        fetchMeals(1, true);
+    }, [fetchMeals]);
 
-    const filterMeals = (category) => {
-        if (category === "All") return meals;
-        return meals.filter((meal) => meal.category === category);
+    const fetchMoreMeals = () => {
+        const nextPage = page + 1;
+        setPage(nextPage);
+        fetchMeals(nextPage);
     };
 
     const handleSeeMore = () => {
-        setVisibleCount((prev) => prev + 6);
+        fetchMoreMeals();
     };
 
-    const categories = ["All", "Breakfast", "Lunch", "Dinner"];
-    const mealsToDisplay = filterMeals(selectedCategory);
-    const displayedMeals = mealsToDisplay.slice(0, visibleCount);
-    const hasMore = visibleCount < mealsToDisplay.length;
+    const categories = ["All", "Breakfast", "Lunch", "Dinner", "Snacks"];
+    const cardsPerRow = 6;
+    const visibleCount = visibleRows * cardsPerRow;
+    const displayedMeals = meals.slice(0, visibleCount);
 
     return (
         <div className="p-6 max-w-7xl mx-auto">
@@ -50,7 +67,7 @@ const MealsByCategory = () => {
                         role="tab"
                         onClick={() => {
                             setSelectedCategory(cat);
-                            setVisibleCount(6); // Reset on category change
+                            setVisibleRows(2); // Reset rows on category change
                         }}
                         className={`tab ${selectedCategory === cat ? "tab-active" : ""}`}
                     >
@@ -67,7 +84,7 @@ const MealsByCategory = () => {
             ) : (
                 <>
                     {/* Meals Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
                         {displayedMeals.map((meal) => (
                             <MealCard key={meal._id} meal={meal} />
                         ))}
