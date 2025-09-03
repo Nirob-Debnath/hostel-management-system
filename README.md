@@ -5,6 +5,9 @@ This project is a **Hostel Management System** developed using the **MERN Stack 
 **Live Site:** [https://hostel-portal-nirob.netlify.app/]
 **Server Site:** [https://hostel-server-two.vercel.app/]
 
+## Admin Email: hostel@admin.com
+## Admin Password: Admin01@!
+
 ## 🚀 Features
 
 - 🔐 **Student & Admin Authentication** with persistent login and protected routes
